@@ -1,24 +1,35 @@
 import { useEffect, useState } from "react";
-import { instance } from "../api/axiosInstance";
+import { Link } from "react-router-dom";
+import { searchDailyBoxOfficeList } from "../api";
 
 function HomePage() {
-  const [test, setTest] = useState("");
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    async function fetchData() {
       try {
-        const response = await instance.get("");
-        setTest(response);
-
-        // console.log("특정브랜드", response.data.result.products);
+        const dailyBoxOfficeList = await searchDailyBoxOfficeList();
+        setData(dailyBoxOfficeList);
       } catch (error) {
-        console.log("에러 : ", error);
+        console.error("Error fetching data:", error);
       }
-    };
+    }
     fetchData();
   }, []);
 
-  return <div>HomePage</div>;
+  if (data.length === 0) return <p>잠시만요</p>;
+
+  return (
+    <div>
+      <ul className="list-none">
+        {data.map((item, index) => (
+          <li key={index}>
+            <Link to={`/detail/${item.movieCd}`}>{item.movieNm}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 export default HomePage;
