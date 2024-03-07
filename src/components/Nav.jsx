@@ -1,7 +1,7 @@
 import React from "react";
 
 function Nav() {
-  return <div className="flex m-1">Nav</div>;
+  return <div className="flex bg-black">Nav</div>;
 }
 
 export default Nav;
