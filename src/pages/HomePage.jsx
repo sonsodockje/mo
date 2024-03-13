@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { searchDailyBoxOfficeList } from "../api";
+import { np } from "../api";
 
 function HomePage() {
   const [data, setData] = useState([]);
@@ -8,8 +8,9 @@ function HomePage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const dailyBoxOfficeList = await searchDailyBoxOfficeList();
-        setData(dailyBoxOfficeList);
+        np();
+        // const dailyBoxOfficeList = await searchDailyBoxOfficeList();
+        // setData(dailyBoxOfficeList);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
