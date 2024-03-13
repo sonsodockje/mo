@@ -1,37 +1,22 @@
 import axios from "axios";
 
-const url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/";
+const nowPlayingBasicUrl = "movie/now_playing";
 
-function getYesterdayDate() {
-  const today = new Date();
-  const yesterday = new Date(today);
-  yesterday.setDate(today.getDate() - 1);
+const instance = axios.create({
+  baseURL: "https://api.themoviedb.org/3/",
+  headers: {
+    accept: "application/json",
+    Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
+  },
+});
 
-  const year = yesterday.getFullYear();
-  const month = String(yesterday.getMonth() + 1).padStart(2, "0");
-  const day = String(yesterday.getDate()).padStart(2, "0");
-
-  return `${year}${month}${day}`;
-}
-
-export async function searchDailyBoxOfficeList() {
-  const response = await axios.get(url + "boxoffice/searchDailyBoxOfficeList", {
+export async function np() {
+  const aa = await instance.get(nowPlayingBasicUrl, {
     params: {
-      key: import.meta.env.VITE_API_KEY,
-      targetDt: getYesterdayDate(),
+      language: "ko-KR",
+      page: 2,
+      region: "KR",
     },
   });
-  console.log(response.data.boxOfficeResult);
-  return response.data.boxOfficeResult.dailyBoxOfficeList;
-}
-
-export async function searchMovieInfo(movieCd) {
-  const response = await axios.get(url + "movie/searchMovieInfo", {
-    params: {
-      key: import.meta.env.VITE_API_KEY,
-      movieCd: movieCd,
-    },
-  });
-  console.log(response.data.movieInfoResult.movieInfo);
-  return response.data.movieInfoResult.movieInfo;
+  console.log(aa.data.results);
 }
