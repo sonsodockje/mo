@@ -1,9 +1,12 @@
+import { useParams } from "react-router-dom";
 import Info from "../components/Info";
 
 function DetailPage() {
+  const movieId = useParams();
+
   return (
     <div>
-      <Info />
+      <Info movieId={movieId} />
     </div>
   );
 }
