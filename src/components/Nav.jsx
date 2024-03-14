@@ -11,7 +11,7 @@ function Nav() {
   }
 
   return (
-    <div className="flex flex-row justify-between w-full px-28 py-5 text-gray-50">
+    <div className="flex flex-row justify-between w-full px-28 py-5 text-gray-50 bg-transparent absolute top-0">
       <div>로고</div>
 
       <div className="flex items-center gap-5">
