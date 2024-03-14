@@ -3,3 +3,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --mian-bg-color: #06141b;
+}
+body {
+  background-color: var(--mian-bg-color);
+}
