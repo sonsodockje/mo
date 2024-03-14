@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const nowPlayingBasicUrl = "movie/now_playing";
-
 const instance = axios.create({
   baseURL: "https://api.themoviedb.org/3/",
   headers: {
@@ -9,6 +7,8 @@ const instance = axios.create({
     Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
   },
 });
+
+const nowPlayingBasicUrl = "movie/now_playing";
 
 export async function np() {
   const aa = await instance.get(nowPlayingBasicUrl, {
