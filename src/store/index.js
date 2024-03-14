@@ -1,6 +1,8 @@
 import { create } from "zustand";
 
-export const useYourStore = create((set) => ({
-  yourState: "VALUE",
-  yourAction: (val) => set((state) => ({ yourState: state.yourState })),
+export const useAuthStore = create((set) => ({
+  isLogin: false,
+  loginToggleAction: () => {
+    set((state) => ({ isLogin: !state.isLogin }));
+  },
 }));
