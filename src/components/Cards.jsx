@@ -1,20 +1,19 @@
 import Swiper from "swiper";
 import "swiper/css";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { getWeekTrendingMovies } from "../api";
-import Card from "./Card";
+import SwiperComponent from "./SwiperComponent";
 
 function Cards() {
-  const swiper = new Swiper();
   const [data, setData] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const tm = await getWeekTrendingMovies();
-        setData(tm);
-        console.log(tm);
+        const respon = await getWeekTrendingMovies();
+        const responRandom = respon.sort(() => Math.random() - 0.5);
+        setData(responRandom);
+        console.log(responRandom);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -26,13 +25,7 @@ function Cards() {
 
   return (
     <div className="px-28">
-      <ul className="flex overflow-x-scroll gap-4">
-        {data.map((item, index) => (
-          <Card item={item} index={index} />
-        ))}
-      </ul>
-      <button>왼</button>
-      <button>오</button>
+      <SwiperComponent data={data} />
     </div>
   );
 }
