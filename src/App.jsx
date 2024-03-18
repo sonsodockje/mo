@@ -1,6 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Nav from "./components/Nav";
-import "./firebaseConfig";
 import DetailPage from "./pages/DetailPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";

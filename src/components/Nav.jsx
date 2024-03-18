@@ -6,6 +6,7 @@ function Nav() {
   const isLogin = useAuthStore((state) => state.isLogin);
   const loginToggleAction = useAuthStore((state) => state.loginToggleAction);
   const [input, setInput] = useState("");
+
   function searchHandler() {
     console.log(input);
     setInput("");
