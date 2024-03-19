@@ -10,8 +10,9 @@ function SwiperComponent({ data }) {
       modules={[Navigation]}
       spaceBetween={8}
       slidesPerView={5}
+      slidesPerGroup={5}
+      speed={500}
       navigation
-      onSwiper={(swiper) => console.log(swiper)}
       className="text-white"
     >
       {data.map((item, index) => (
