@@ -19,4 +19,5 @@ export async function np() {
     },
   });
   console.log(aa.data.results);
+  return aa
 }
